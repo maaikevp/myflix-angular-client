@@ -1,10 +1,9 @@
-import { Injectable } from '@angular/core';
+import { Injectable, ErrorHandler } from '@angular/core';
 
-import { catchError } from 'rxjs/internal/operators';
+import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
-
 
 
 //Declaring the api url that will provide data for the client app
@@ -12,13 +11,13 @@ const apiUrl = 'https://testingmovie-apionrender.onrender.com/';
 @Injectable({
   providedIn: 'root'
 })
-export class UserRegistrationService {
+export class FetchApiDataService {
   // Inject the HttpClient module to the constructor params
   // This will provide HttpClient to the entire class, making it available via this.http
   constructor(private http: HttpClient) {
   }
 
-  // extractResponseData: any
+  extractResponseData: any
   // Making the api call for the user registration endpoint
   public userRegistration(userDetails: any): Observable<any> {
     console.log(userDetails);
@@ -27,38 +26,53 @@ export class UserRegistrationService {
     );
   }
 
-  private handleError(error: HttpErrorResponse): any {
-    if (error.error instanceof ErrorEvent) {
-      console.error('Some error occurred:', error.error.message);
-    } else {
-      console.error(
-        `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`);
-    }
-    return throwError(
-      'Something bad happened; please try again later.');
-  }
+  // private handleError(error: HttpErrorResponse): any {
+  //   if (error.error instanceof ErrorEvent) {
+  //     console.error('Some error occurred:', error.error.message);
+  //   } else {
+  //     console.error(
+  //       `Error Status code ${error.status}, ` +
+  //       `Error body is: ${error.error}`);
+  //   }
+  //   return throwError(
+  //     'Something bad happened; please try again later.');
+  // }
 
 
-  // Making the api call for the user login endpoint
+
+
+  // USER LOGIN
+  // export class UserLoginService extends ErrorAndResponseService {
+  // constructor(http: HttpClient) {
+  //   super(http);
+  // }
+  // public userLogin(userDetails: any): Observable<any> {
+  //   return this.http
+  //     .post(apiUrl + '/login', userDetails, {
+  //       headers: new HttpHeaders({
+  //         'Content-Type': 'application/json',
+  //       }),
+  //     })
+  //     .pipe(map(this.extractResponseData), catchError(this.handleError));
+  // }
+  //  Making the api call for the user login endpoint
+
   public userLogin(userDetails: any): Observable<any> {
     console.log(userDetails);
-    return this.http.post(apiUrl + 'users', userDetails).pipe(
+    return this.http.post(apiUrl + 'login?' + new URLSearchParams(userDetails), {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Content-Type': 'application/json',
+        'Accept': 'application/json',
+        'Access-Control-Allow-Credentials': 'true'
+      }
+    }).pipe(
       catchError(this.handleError)
     );
   }
 
-  private handleError(error: HttpErrorResponse): any {
-    if (error.error instanceof ErrorEvent) {
-      console.error('Some error occurred:', error.error.message);
-    } else {
-      console.error(
-        `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`);
-    }
-    return throwError(
-      'Something bad happened; please try again later.');
-  }
+
+
 
 
   // Making the api call for the Get All Movies endpoint
@@ -141,7 +155,7 @@ export class UserRegistrationService {
         })
     }).pipe(
       map(this.extractResponseData),
-      map((data) => data.FavoriteMovies),
+      map((data: any) => data.FavoriteMovies),
       catchError(this.handleError)
     );
   }
@@ -204,16 +218,30 @@ export class UserRegistrationService {
 
 
 
+  // private handleError(error: HttpErrorResponse): any {
+  //   if (error.error instanceof ErrorEvent) {
+  //     console.error('Some error occurred:', error.error.message);
+  //   } else {
+  //     console.error(
+  //       `Error Status code ${error.status}, ` +
+  //       `Error body is: ${error.error}`);
+  //   }
+  //   return throwError(
+  //     'Something bad happened; please try again later.');
+  // }
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.error('Some error occurred:', error.error.message);
     } else {
-      console.error(
-        `Error Status code ${error.status}, ` +
-        `Error body is: ${error.error}`);
+      JSON.stringify(
+        console.error(
+          `Error Status code ${error.status}, ` +
+          `Error body is: ${error.error}`));
     }
     return throwError(
       'Something bad happened; please try again later.');
   }
+
 }
 
