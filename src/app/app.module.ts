@@ -17,19 +17,30 @@ import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MovieCardComponent } from './movie-card/movie-card.component';
+// import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+// import { RouterModule, Routes } from '@angular/router';
 
 
+// const appRoutes: Routes = [
+//   { path: 'welcome', component: WelcomePageComponent },
+//   { path: 'movies', component: MovieCardComponent },
+//   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
+// ];
 
 @NgModule({
   declarations: [
     AppComponent,
     UserRegistrationFormComponent,
-    UserLoginFormComponent
+    UserLoginFormComponent,
+    MovieCardComponent,
+    // WelcomePageComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
+    // RouterModule.forRoot(appRoutes),
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
