@@ -18,15 +18,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { UserLoginFormComponent } from './user-login-form/user-login-form.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { MovieCardComponent } from './movie-card/movie-card.component';
-// import { WelcomePageComponent } from './welcome-page/welcome-page.component';
-// import { RouterModule, Routes } from '@angular/router';
+import { WelcomePageComponent } from './welcome-page/welcome-page.component';
+import { RouterModule, Routes } from '@angular/router';
+import { MatIconModule } from '@angular/material/icon';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { NavbarComponent } from './navbar/navbar.component';
 
 
-// const appRoutes: Routes = [
-//   { path: 'welcome', component: WelcomePageComponent },
-//   { path: 'movies', component: MovieCardComponent },
-//   { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
-// ];
+import { provideHttpClient, withFetch } from "@angular/common/http";
+
+
+const appRoutes: Routes = [
+  { path: 'welcome', component: WelcomePageComponent },
+  { path: 'movies', component: MovieCardComponent },
+  { path: 'profile', component: ProfileViewComponent },
+  { path: '', redirectTo: 'welcome', pathMatch: 'prefix' },
+];
 
 @NgModule({
   declarations: [
@@ -34,13 +42,17 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
     UserRegistrationFormComponent,
     UserLoginFormComponent,
     MovieCardComponent,
-    // WelcomePageComponent
+    WelcomePageComponent,
+    ProfileViewComponent,
+    NavbarComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     AppRoutingModule,
-    // RouterModule.forRoot(appRoutes),
+    RouterModule.forRoot(appRoutes),
+    MatIconModule,
+    MatToolbarModule,
     BrowserAnimationsModule,
     MatInputModule,
     MatButtonModule,
@@ -50,10 +62,21 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
     MatSnackBarModule,
     FormsModule
   ],
+  exports: [
+    MatButtonModule,
+    MatIconModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatToolbarModule
+  ],
   providers: [
     provideClientHydration(),
-    provideAnimationsAsync()
+    provideAnimationsAsync(),
+    provideHttpClient(withFetch())
   ],
   bootstrap: [AppComponent]
+
+
 })
 export class AppModule { }
