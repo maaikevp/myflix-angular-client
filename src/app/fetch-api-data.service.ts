@@ -153,11 +153,6 @@ export class FetchApiDataService {
   }
 
 
-  // Making the api call for the Get User endpoint
-
-
- 
-
   // Making the api call for the Get Favourite Movies for a user endpoint
   getFavouriteMovies(username: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -186,7 +181,6 @@ export class FetchApiDataService {
     );
   }
 
-
   // Making the api call for the Delete a Movie to Favourite Movies endpoint
   deleteFavouriteMovies(username: string, movieID: string): Observable<any> {
     const token = localStorage.getItem('token');
@@ -201,18 +195,37 @@ export class FetchApiDataService {
     );
   }
 
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
+      console.log(error);
+      console.log(error.error);
       console.error('Some error occurred:', error.error.message);
     } else {
+      console.log(error);
+      console.log(error.error);
       console.error(
         `Error Status code ${error.status}, ` +
         `Error body is: ${error.error}`);
     }
-    return throwError(
-      'Something bad happened; please try again later.');
+    return throwError(() =>
+      new Error('Something bad happened; please try again later.'));
   }
 }
+
+
+//   private handleError(error: HttpErrorResponse): any {
+//     if (error.error instanceof ErrorEvent) {
+//       console.error('Some error occurred:', error.error.message);
+//     } else {
+//       console.error(
+//         `Error Status code ${error.status}, ` +
+//         `Error body is: ${error.error}`);
+//     }
+//     return throwError(
+//       'Something bad happened; please try again later.');
+//   }
+// }
 
 
 // getUser(): Observable<any> {

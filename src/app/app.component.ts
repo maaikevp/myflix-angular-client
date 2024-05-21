@@ -4,6 +4,13 @@ import { UserLoginFormComponent } from './user-login-form/user-login-form.compon
 import { MatDialog } from '@angular/material/dialog';
 import { MovieCardComponent } from './movie-card/movie-card.component';
 
+import { MatDialogConfig } from '@angular/material/dialog';
+import { SynopsisComponent } from './synopsis/synopsis.component';
+import { GenreInfoComponent } from './genre-info/genre-info.component';
+import { DirectorInfoComponent } from './director-info/director-info.component';
+import { NavbarComponent } from './navbar/navbar.component';
+import { ProfileViewComponent } from './profile-view/profile-view.component';
+
 
 @Component({
   selector: 'app-root',
@@ -13,6 +20,10 @@ import { MovieCardComponent } from './movie-card/movie-card.component';
 export class AppComponent {
   title = 'myFlix-Angular-client';
 }
+
+// not sure:
+// constructor(public dialog: MatDialog) { }
+
 
 
 // @Component({

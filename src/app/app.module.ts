@@ -27,6 +27,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 
 
 import { provideHttpClient, withFetch } from "@angular/common/http";
+import { SynopsisComponent } from './synopsis/synopsis.component';
+import { GenreInfoComponent } from './genre-info/genre-info.component';
+import { DirectorInfoComponent } from './director-info/director-info.component';
+
 
 
 const appRoutes: Routes = [
@@ -45,6 +49,10 @@ const appRoutes: Routes = [
     WelcomePageComponent,
     ProfileViewComponent,
     NavbarComponent,
+    SynopsisComponent,
+    GenreInfoComponent,
+    DirectorInfoComponent,
+
   ],
   imports: [
     BrowserModule,

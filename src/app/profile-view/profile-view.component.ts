@@ -64,7 +64,6 @@ export class ProfileViewComponent implements OnInit {
 
   }
 
-
   updateUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((result) => {
       console.log(result);
@@ -110,53 +109,3 @@ export class ProfileViewComponent implements OnInit {
 }
 
 
-// getUser(): void {
-//   this.fetchApiData.getOneUser().subscribe((response: any) => {
-//     console.log(response);
-//     this.user = response;
-//     this.userData.Username = this.user.Username;
-//     this.userData.Email = this.user.Email;
-//     this.user.Birthday = formatDate(this.user.Birthday, 'yyyy-MM-dd', 'en-US', 'UTC+0');
-
-//     console.log(this.userData);
-
-//     this.fetchApiData.getAllMovies().subscribe((response: any) => {
-//       console.log(response);
-//       this.favoriteMovies = response.filter((m: { _id: any }) => this.user.FavoriteMovies.indexOf(m._id) >= 0)
-//     })
-//   })
-// }
-
-// getUser(): void {
-//   this.fetchApiData.getOneUser().subscribe((response: any) => {
-//     // const username = JSON.parse(localStorage.getItem('username') || '{}');
-//     // const token = localStorage.getItem('token');
-//     console.log(response);
-//     this.user = response;
-//     this.userData.Username = this.user.Username;
-//     this.userData.Email = this.user.Email;
-//     this.userData.Birthday = this.user.Birthday; // formatDate(this.user.Birthday, 'yyyy-MM-dd', 'en-US', 'UTC+0');
-//     console.log(this.userData);
-//     return (this.userData.Username, this.userData.Email, this.userData.Birthday);
-//   })
-// }
-
-
-// getProfile(): void {
-
-//   this.fetchApiData.getOneUser().subscribe((response: any) => {
-//     console.log('response:', response)
-//     this.user = response;
-//     this.userData.Username = this.user.Username;
-//     this.userData.Email = this.user.Email;
-//     let birthday = new Date(this.user.BirthDay)
-//     this.userData.Birthday = birthday.toISOString().split('T')[0];
-//     this.userData.UserId = this.user._id; // Add this line
-//     this.formUserData = { ...this.userData }
-//     this.favoriteMoviesIDs = this.user.FavoriteMovies;
-//   })
-
-//let birthday = new Date(this.user.BirthDay);
-// let birthday = new Date(this.user.BirthDay);
-//let birthday = this.user.BirthDay.toDateString();
-// this.userData.Birthday = birthday.toString();
