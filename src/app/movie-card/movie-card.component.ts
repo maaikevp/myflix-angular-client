@@ -18,15 +18,10 @@ import { SynopsisComponent } from '../synopsis/synopsis.component';
 export class MovieCardComponent implements OnInit {
 
   movies: any[] = [];
-
   genre: any = "";
-
   director: any = "";
-
   user: any = {};
-
   userData = { Username: "", UserId: "", favoritemovie: [] }
-
   favoritemovie: any[] = [];
 
   /**
@@ -58,8 +53,6 @@ export class MovieCardComponent implements OnInit {
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
-      //let movieID = this.movies._id;
-      //console.log("movie ID", movieID)
       console.log(typeof this.movies);
       console.log("movies from API", this.movies)
 
@@ -72,28 +65,18 @@ export class MovieCardComponent implements OnInit {
       console.log('Fav-user:', this.user);
       this.userData.Username = this.user.Username;
       this.userData.favoritemovie = this.user.FavoriteMovies;
-      console.log('Favorite Movies:', this.userData.favoritemovie);
+      this.favoritemovie = this.user.FavoriteMovies;
+      console.log('userdata favMovies:', this.userData.favoritemovie);
+      console.log('thisfavMovie:', this.favoritemovie);
     });
   }
-
   /**
-    * Checks if a movie is in the user's favorite list.
-    * @param movie - The movie to check.
-    * @returns True if the movie is in the favorite list, false otherwise.
-    */
-  isFav(movie: string): boolean {
-    const user = JSON.parse(localStorage.getItem('user') || '{}');
-    // console.log('movie:', movie._id);
-    // console.log('favorite:', user.FavoriteMovies.indexOf(movie));
-    return user.FavoriteMovies.indexOf() >= 0;
-
-    // return this.favoritemovie.includes(movie._id);
-    // console.log('favorite:', favorite.length);
-    // return this.userData.favoritemovie.indexOf(movieID) >= 0;
-    // const favorite = this.userData.favoritemovie.filter((movieID) => movieID.ID === movieID);
-    // console.log('favorite:', favorite.length);
-    // return favorite.length ? true : false;
-    // return this.favoritemovie.includes(movie._id);
+  * Checks if a movie is in the user's favorite list.
+  * @param movie - The movie to check.
+  * @returns True if the movie is in the favorite list, false otherwise.
+  */
+  isFav(movie: any): boolean {
+    return this.favoritemovie.includes(movie._id);
   }
 
   /**
@@ -106,7 +89,8 @@ export class MovieCardComponent implements OnInit {
     console.log('isFavorite:', isFavorite);
     isFavorite
       ? this.deleteFavMovies(movie)
-      : this.addFavMovies(movie);
+      : this.addFavMovies(movie)
+
   }
   /**
      * Opens a dialog displaying genre details.
@@ -169,6 +153,8 @@ export class MovieCardComponent implements OnInit {
     if (user) {
       let parsedUser = JSON.parse(user);
       console.log('user:', parsedUser);
+      const token = localStorage.getItem('token');
+      console.log('token', token);
       this.userData.UserId = parsedUser._id;
       console.log('userData:', this.userData);
       this.fetchApiData.addFavouriteMovies(parsedUser.Username, movie._id).subscribe((resp) => {
@@ -197,32 +183,13 @@ export class MovieCardComponent implements OnInit {
         // Remove the movie ID from the favoritemovie array
         this.favoritemovie = this.favoritemovie.filter((id) => id !== movie._id);
         // Show a snack bar message
-        this.snackBar.open(`${movie.Tite} has been removed from your favorites`, 'OK', {
+        this.snackBar.open(`${movie.Title} has been removed from your favorites`, 'OK', {
           duration: 3000,
         });
       });
     }
   }
 }
-
-
-
-
-// getFavorites(): void {
-//   this.fetchApiData.getOneUser().subscribe((resp: any) => {
-//     if (Array.isArray(resp)) {
-//       this.movies = resp;
-//       // Loop through each movie and push its ID into favoritemovie array
-//       this.movies.forEach((movie: any) => {
-//         this.favoritemovie.push(movie._id);
-//         console.log('Favorite Movies:', this.favoritemovie);
-//       });
-//     }
-//   });
-// }
-
-
-
 
 
 

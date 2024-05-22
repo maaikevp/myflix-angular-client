@@ -167,13 +167,16 @@ export class FetchApiDataService {
       catchError(this.handleError)
     );
   }
-  // Making the api call for the Add a Movie to Favourite Movies endpoint
+  // Making the api call for the Add a Movie to Favourite Movies endpoint - not sure why the {} in the code needs to be added
   addFavouriteMovies(username: string, movieID: string): Observable<any> {
     const token = localStorage.getItem('token');
-    return this.http.post(apiUrl + 'users/' + username + '/movies/' + movieID, {
+    console.log('token:', token);
+    console.log('username:', username);
+    return this.http.post(apiUrl + 'users/' + username + '/movies/' + movieID, {}, {
       headers: new HttpHeaders(
         {
           Authorization: 'Bearer ' + token,
+          key: "Access-Control-Allow-Origin", value: "*"
         })
     }).pipe(
       map(this.extractResponseData),
@@ -196,6 +199,8 @@ export class FetchApiDataService {
   }
 
 
+
+
   private handleError(error: HttpErrorResponse): any {
     if (error.error instanceof ErrorEvent) {
       console.log(error);
@@ -211,53 +216,7 @@ export class FetchApiDataService {
     return throwError(() =>
       new Error('Something bad happened; please try again later.'));
   }
+
 }
 
 
-//   private handleError(error: HttpErrorResponse): any {
-//     if (error.error instanceof ErrorEvent) {
-//       console.error('Some error occurred:', error.error.message);
-//     } else {
-//       console.error(
-//         `Error Status code ${error.status}, ` +
-//         `Error body is: ${error.error}`);
-//     }
-//     return throwError(
-//       'Something bad happened; please try again later.');
-//   }
-// }
-
-
-// getUser(): Observable<any> {
-//   const user = JSON.parse(localStorage.getItem('user') || '{}');
-//   return user;
-
-// const username = localStorage.getItem('user');
-// return this.http.get(apiUrl + 'users/' + username, {
-//   headers: new HttpHeaders(
-//     {
-//       Authorization: 'Bearer ' + token,
-//     })
-// }).pipe(
-//   map(this.extractResponseData),
-//   catchError(this.handleError)
-// );
-
-
- // Making the api call for the Edit User endpoint
-  // // Update user info
-  // editUser(updatedUser: any): Observable<any> {
-  //   const username = localStorage.getItem('username');
-  //   const token = localStorage.getItem('token');
-  //   //const username = localStorage.getItem('username');
-  //   // const user = JSON.parse(localStorage.getItem('username') || '{}');    
-  //   return this.http.put(apiUrl + 'users/' + updatedUser.username, updatedUser, {
-  //     headers: new HttpHeaders({
-  //       Authorization: 'Bearer ' + token,
-  //     })
-  //   }).pipe(
-  //     map(this.extractResponseData),
-  //     catchError(this.handleError),
-  //     console.log(result);
-  //   );
-  // }
