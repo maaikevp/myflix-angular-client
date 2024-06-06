@@ -48,8 +48,8 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-     * Fetches all movies from the API.
-     */
+   * Fetches all movies from the API.
+   */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -58,7 +58,10 @@ export class MovieCardComponent implements OnInit {
 
     });
   }
-
+  /**
+   * Making the api call for the Get All Movies endpoint
+   * @returns {Observable<any>} - Observable for the API response.
+   */
   getFavorites(): void {
     this.fetchApiData.getOneUser().subscribe((resp: any) => {
       this.user = resp[0];
@@ -80,9 +83,9 @@ export class MovieCardComponent implements OnInit {
   }
 
   /**
-    * Toggles a movie in the user's favorite list.
-    * @param movie - The movie to toggle.
-    */
+  * Toggles a movie in the user's favorite list.
+  * @param movie - The movie to toggle.
+  */
   toggleFav(movie: any): void {
     console.log('toggleFav called with movie:', movie);
     const isFavorite = this.isFav(movie);

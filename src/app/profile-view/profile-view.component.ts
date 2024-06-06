@@ -9,6 +9,12 @@ import { GenreInfoComponent } from '../genre-info/genre-info.component';
 import { DirectorInfoComponent } from '../director-info/director-info.component';
 import { SynopsisComponent } from '../synopsis/synopsis.component';
 
+/**
+ * @description Component representing the user profile page.
+ * @selector 'app-user-profile'
+ * @templateUrl './user-profile.component.html'
+ * @styleUrls ['./user-profile.component.scss']
+ */
 
 @Component({
   selector: 'profile-view',
@@ -32,6 +38,13 @@ export class ProfileViewComponent implements OnInit {
   favoriteMoviesIDs: any[] = [];
   favoritemovie: any[] = [];
 
+  /**
+   * @constructor - Constructor for UserProfileComponent.
+   * @param {FetchApiDataService} fetchApiData - Service for fetching data from the API.
+   * @param {MatSnackBar} snackBar - Material snack bar service for displaying notifications.
+   * @param {Router} router - Router service for navigation.
+   * @param {MatDialog} dialog - Material dialog service for opening dialogs.
+   */
 
   constructor(
     public fetchApiData: FetchApiDataService,
@@ -49,7 +62,10 @@ export class ProfileViewComponent implements OnInit {
   }
 
   // USER
-
+  /**
+   * Function for getting user.
+   * @returns users username, email, birthday, and favorite movies.
+   */
   getProfile(): void {
     console.log(this.userData)
     this.fetchApiData.getOneUser().subscribe((response) => {
@@ -73,7 +89,10 @@ export class ProfileViewComponent implements OnInit {
     });
 
   }
-
+  /**
+   * Function for updating user information.
+   * @returns Message "User update successful" / "Failed to update user"
+   */
   updateUser(): void {
     this.fetchApiData.editUser(this.userData).subscribe((result) => {
       console.log(result);
@@ -95,7 +114,10 @@ export class ProfileViewComponent implements OnInit {
       });
     });
   }
-
+  /**
+   * Function to delete user profile.
+   * @returns Message "User successfully deleted."
+   */
   deleteUser(): void {
     if (confirm('are you sure?')) {
       this.router.navigate(['welcome']).then(() => {
@@ -115,9 +137,12 @@ export class ProfileViewComponent implements OnInit {
   }
 
 
-
   // MOVIES
 
+  /**
+    * Making the api call for the Get All Movies endpoint
+    * @returns {Observable<any>} - Observable for the API response.
+    */
   getMovies(): void {
     this.fetchApiData.getAllMovies().subscribe((resp: any) => {
       this.movies = resp;
@@ -126,7 +151,10 @@ export class ProfileViewComponent implements OnInit {
       console.log("movies from API-profile", this.movies)
     });
   }
-
+  /**
+     * Making the api call for the Get All Movies endpoint
+     * @returns {Observable<any>} - Observable for the API response.
+     */
   getFavorites(): void {
     this.fetchApiData.getOneUser().subscribe((response) => {
       this.user = response[0];
@@ -136,10 +164,10 @@ export class ProfileViewComponent implements OnInit {
     });
   }
   /**
-      * Checks if a movie is in the user's favorite list.
-      * @param movie - The movie to check.
-      * @returns True if the movie is in the favorite list, false otherwise.
-      */
+    * Checks if a movie is in the user's favorite list.
+    * @param movie - The movie to check.
+    * @returns True if the movie is in the favorite list, false otherwise.
+    */
   isFav(movie: any): boolean {
     return this.favoritemovie.includes(movie._id);
   }
