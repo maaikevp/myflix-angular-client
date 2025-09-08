@@ -2,6 +2,37 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
 
+
+## Description of the Issue tracker app
+
+MyFlix Angular Client is a single-page, responsive application with which users can find out more about movies they are interested in, including information about genres and directors. Users' profile and personal information can be saved and updated and a list of favourite movies can be created in the app. Systems and programs used:
+
+* Angular, Angular CLI
+* HTML, CSS
+* MERN tech stack (MongoDB, Express, React, Node.js)
+  
+
+<br>
+
+### Issuetracker link
+
+App URL: https://maaikevp.github.io/myflix-angular-client/welcome
+
+<br>
+<br>
+
+
+
+### Screenshot of app
+
+![Issue Tracker Screenshot](./src/Angular-flix-client.png)
+
+
+
+
+
+
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
