@@ -25,7 +25,7 @@ App URL: https://maaikevp.github.io/myflix-angular-client/welcome
 
 ### Screenshot of app
 
-![Issue Tracker Screenshot](./src/Angular-flix-client.png)
+![Angular-flix-client](./src/Angular-flix-client.JPG)
 
 
 
