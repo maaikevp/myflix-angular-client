@@ -1,13 +1,22 @@
 <app-navbar></app-navbar>
 <br>
 <div class="main-page">
-    <h1>
-        Welcome to myFlix!
-    </h1>
-    <button mat-raised-button (click)="openUserRegistrationDialog()" style="margin-right: 10px;" color="primary">
-        Sign Up
-    </button>
-    <button mat-raised-button color="primary" (click)="openUserLoginDialog()" style="margin-right: 10px;">
-        Login
-    </button>
+    <div class="welcome-container">
+        <!-- <img mat-card-image src="https://www.clipartkey.com/mpngs/m/187-1871891_transparent-hello-kitty-kimono.png"
+            width="200px"> -->
+        <h1>Welcome to myFlix!</h1>
+        <!-- <p>Discover and share your favorite movies with friends.</p> -->
+        <!-- <br> -->
+        <p>Join our community of movie enthusiasts today!</p>
+        <br>
+        <p>Sign up or log in to get started.</p>
+        <br>
+
+        <button mat-raised-button (click)="openUserRegistrationDialog()" style="margin-right: 10px;" color="primary">
+            Sign Up
+        </button>
+        <button mat-raised-button color="primary" (click)="openUserLoginDialog()" style="margin-right: 10px;">
+            Login
+        </button>
+    </div>
 </div>

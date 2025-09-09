@@ -80,6 +80,8 @@
     --dark-color-scheme: dark;
 }
 
+
+
 @media (prefers-color-scheme: light) {
     :root {
         --color-background: var(--light-color-background);
@@ -1410,3 +1412,4 @@ img {
         top: 42px;
     }
 }
+
