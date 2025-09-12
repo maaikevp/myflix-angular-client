@@ -1,8 +1,5 @@
 # MyFlixAngularClient
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
-
-<br>
 
 ### Description of the Angular Movie App app
 
@@ -32,7 +29,9 @@ App URL: https://maaikevp.github.io/myflix-angular-client/welcome
 
 
 
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.5.
 
+<br>
 
 ## Development server
 
